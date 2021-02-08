@@ -7,11 +7,30 @@ function makeGrid(rows, cols) {
         let cell = document.createElement('div');
         grid.appendChild(cell).className = 'grid-item';
     }
+    hoverBlack();
 };
+
+
+function hoverBlack() {
+    let gridItem = document.querySelectorAll('.grid-item');
+
+    gridItem.forEach(item => {
+        item.addEventListener('mouseover', () => {
+            item.style.backgroundColor = 'black';
+        });
+    });
+};
+
 makeGrid(16, 16);
-const gridItems = Array.prototype.slice.apply(document.querySelectorAll(".grid-item"));
-gridItems.forEach((gridItem) => {
-    gridItem.addEventListener('onmouseover', () => {
-        gridItems.style.backgroundColor = 'black';
+
+const reset = document.querySelector('#reset');
+reset.addEventListener('click', () => {
+    let gridItem = document.querySelectorAll('.grid-item');
+
+    gridItem.forEach(item => {
+        item.remove();
     })
+    let col = prompt('Enter how many columns x rows should the new grid have?')
+
+    makeGrid(col, col);
 })
